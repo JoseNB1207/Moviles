@@ -1,13 +1,49 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>proyecto</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymTracker</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>GymTracker</h1>
+        <p>Controla tus series, pesos y repeticiones</p>
+    </header>
+
+    <main>
+
+        <!-- Selector de ejercicio -->
+        <section class="selector">
+            <label for="exerciseSelect">Ejercicio:</label>
+            <select id="exerciseSelect">
+                <option value="Press Banca">Press Banca</option>
+                <option value="Sentadilla">Sentadilla</option>
+                <option value="Peso Muerto">Peso Muerto</option>
+                <option value="Press Militar">Press Militar</option>
+                <option value="Curl Bíceps">Curl Bíceps</option>
+            </select>
+        </section>
+
+        <!-- Formulario serie -->
+        <section class="form">
+            <h2>Agregar Serie</h2>
+
+            <input type="number" id="pesoInput" placeholder="Peso (kg)">
+            <input type="number" id="repsInput" placeholder="Repeticiones">
+            <button id="addSetBtn">Guardar Serie</button>
+        </section>
+
+        <!-- Historial -->
+        <section>
+            <h2>Historial</h2>
+            <ul id="historyList"></ul>
+        </section>
+
+    </main>
+
+    <script src="src/main.js"></script>
+</body>
 </html>

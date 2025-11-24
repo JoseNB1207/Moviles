@@ -1,24 +1,53 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+// Obtener elementos
+const exerciseSelect = document.getElementById("exerciseSelect");
+const pesoInput = document.getElementById("pesoInput");
+const repsInput = document.getElementById("repsInput");
+const addSetBtn = document.getElementById("addSetBtn");
+const historyList = document.getElementById("historyList");
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+// Cargar historial al iniciar
+updateHistory();
 
-setupCounter(document.querySelector('#counter'))
+// Evento para agregar serie
+addSetBtn.addEventListener("click", () => {
+    const exercise = exerciseSelect.value;
+    const peso = pesoInput.value;
+    const reps = repsInput.value;
+
+    if (!peso || !reps) {
+        alert("Por favor completa todos los campos.");
+        return;
+    }
+
+    const newSet = {
+        peso,
+        reps,
+        date: new Date().toLocaleString()
+    };
+
+    // Guardar en localStorage
+    const data = JSON.parse(localStorage.getItem(exercise)) || [];
+    data.push(newSet);
+    localStorage.setItem(exercise, JSON.stringify(data));
+
+    pesoInput.value = "";
+    repsInput.value = "";
+
+    updateHistory();
+});
+
+// Actualizar historial según el ejercicio seleccionado
+exerciseSelect.addEventListener("change", updateHistory);
+
+function updateHistory() {
+    const exercise = exerciseSelect.value;
+    const data = JSON.parse(localStorage.getItem(exercise)) || [];
+
+    historyList.innerHTML = "";
+
+    data.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.textContent = `Serie ${index + 1}: ${item.peso}kg × ${item.reps} reps — ${item.date}`;
+        historyList.appendChild(li);
+    });
+}
