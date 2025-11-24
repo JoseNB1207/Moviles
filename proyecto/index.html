@@ -3,47 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GymTracker</title>
-    <link rel="stylesheet" href="src/style.css">
+    <title>UniNotes Exchange</title>
+    <link rel="stylesheet" href="./src/style.css">
 </head>
+
 <body>
 
-    <header>
-        <h1>GymTracker</h1>
-        <p>Controla tus series, pesos y repeticiones</p>
-    </header>
+<header>
+    <h1>📚 UniNotes</h1>
+    <p>Comparte y consulta apuntes universitarios</p>
+</header>
 
-    <main>
+<section class="add-note">
+    <h2>Nuevo Apunte</h2>
+    <input id="titleInput" type="text" placeholder="Título del apunte">
+    <textarea id="descInput" placeholder="Descripción corta"></textarea>
+    <input id="linkInput" type="text" placeholder="Link del archivo (Drive, foto, PDF)">
+    <button id="saveBtn">Guardar Apunte</button>
+</section>
 
-        <!-- Selector de ejercicio -->
-        <section class="selector">
-            <label for="exerciseSelect">Ejercicio:</label>
-            <select id="exerciseSelect">
-                <option value="Press Banca">Press Banca</option>
-                <option value="Sentadilla">Sentadilla</option>
-                <option value="Peso Muerto">Peso Muerto</option>
-                <option value="Press Militar">Press Militar</option>
-                <option value="Curl Bíceps">Curl Bíceps</option>
-            </select>
-        </section>
+<section class="notes-section">
+    <h2>Apuntes Compartidos</h2>
+    <div id="notesList"></div>
+</section>
 
-        <!-- Formulario serie -->
-        <section class="form">
-            <h2>Agregar Serie</h2>
-
-            <input type="number" id="pesoInput" placeholder="Peso (kg)">
-            <input type="number" id="repsInput" placeholder="Repeticiones">
-            <button id="addSetBtn">Guardar Serie</button>
-        </section>
-
-        <!-- Historial -->
-        <section>
-            <h2>Historial</h2>
-            <ul id="historyList"></ul>
-        </section>
-
-    </main>
-
-    <script src="src/main.js"></script>
 </body>
+<script type="module" src="./src/main.js"></script>
 </html>
